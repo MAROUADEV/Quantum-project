@@ -1,0 +1,27 @@
+<!-- NAVBAR -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-btn">
+            <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu"></i></button>
+        </div>
+        <!-- logo -->
+        <div class="navbar-brand">
+            <a [routerLink]='["/home"]'>Quantum Technologies</a>
+        </div>
+        <!-- end logo -->
+        <div class="navbar-right">
+            
+                <!--button type="button" class="btn btn-primary">Translate</button-->
+                <div class="btn-group">
+                   <label> 
+                        {{ 'header.select' | translate }} <select class=" btn btn-primary" #langSelect (change)="translate.use(langSelect.value)">
+                            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang"> {{ lang }} </option>
+                        </select></label> 
+                  </div>
+                
+        </div>
+    </div>
+</nav>
+
+
+<!-- END NAVBAR -->

@@ -1,0 +1,28 @@
+{
+  "header": 
+    {
+    "title": "Our philosophy.Our job is to help every company to understand its market, mark its territory against the competition, seduce the public by the attraction of brand or motivate the intern on the business project.",
+    "select":"choose your language",
+    "sidebarHome":"Home",
+    "sidebarAbout":"About Us",
+    "sidebarContact":"Contact Us",
+    "logintd1":"Username",
+    "logintd2":"Password",
+    "loginbtnlogin":"Login",
+    "loginbtnregister":"Register",
+    "registerlabelemail":"Email",
+    "registerlabelpassword":"Password",
+    "registerlabelpasswordconf":"Password Confirmation",
+    "registerbtn":"Register",
+    "registererroremail":"Email invalid",
+    "registererrorpassword":"Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters",
+    "contactlabelname":"Name",
+    "contactplaceholdername":"Enter your name",
+    "contactlabelemail":"Address email",
+    "contactplaceholderemail":"Enter your address email",
+    "contactlabelmessage":"Message",
+    "contactplaceholdermessage":"Enter your message",
+    "contactbtn":"Submit",
+    "aboutustext":"About us"
+    }
+}

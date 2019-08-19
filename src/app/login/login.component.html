@@ -1,0 +1,31 @@
+
+
+<table style="margin-top: 240px;
+margin-left: 500px; display:inline-block">
+          <tr>
+        <td>
+            {{ 'header.logintd1' | translate }}
+        </td>
+        <td>
+          <input type="text" name="Login" [(ngModel)]="Login"/>
+        </td>
+          </tr><br>
+          <tr>
+            <td>
+                {{ 'header.logintd2' | translate }}
+            </td>
+            <td>
+              <input type="password" name="Password" [(ngModel)]="Password"/>
+            </td>
+          </tr><br>
+          <tr>
+            <td>
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="Button" name="Log" (click)="log()" class="btn btn-primary" value="{{ 'header.loginbtnlogin' | translate }}"/>
+            </td> 
+            <td>
+                    &nbsp;<a [routerLink]='["/register"]' class="btn btn-primary">{{ 'header.loginbtnregister' | translate }}</a>
+            </td>
+          </tr>
+        </table>
+
+        

@@ -1,0 +1,30 @@
+
+
+{
+    "header": 
+        {
+        "title": "Notre philosophie.Notre travail consiste à aider chaque entreprise à comprendre son marché, marquer son territoire face à la concurrence, séduire le public par l'attraction de la marque ou motiver le stagiaire sur le projet d'entreprise.",
+        "select":"choisissez votre langue",
+        "sidebarHome":"Acceuil",
+        "sidebarAbout":"A propos de nous",
+        "sidebarContact":"Contactez-nous",
+        "logintd1":"Pseudo",
+        "logintd2":"Mot de passe",
+        "loginbtnlogin":"Se connecter",
+        "loginbtnregister":"S'inscrire",
+        "registerlabelemail":"Email",
+        "registerlabelpassword":"Mot de passe",
+        "registerlabelpasswordconf":"Confirmation Mot de passe",
+        "registerbtn":"S'inscrire",
+        "registererroremail":"Email invalide",
+        "registererrorpassword":"Doit contenir au moins un chiffre et une lettre majuscule et minuscule, et au moins 8 caractères ou plus",
+        "contactlabelname":"Nom ",
+        "contactplaceholdername":"Entrez votre nom",
+        "contactlabelemail":"Adresse email",
+        "contactplaceholderemail":"Entrez votre adresse email",
+        "contactlabelmessage":"Message",
+        "contactplaceholdermessage":"Entrez votre message",
+        "contactbtn":"Envoyer",
+        "aboutustext":"A propos de nous "
+        }
+}

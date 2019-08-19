@@ -1,0 +1,359 @@
+
+<!--div  class="panel panel-default panel-horizontal" style="margin-left: 33%;"> 
+    <div  class="col-sm-12 maincontent" class="panel-body" *ngFor="let p of projetList">
+        <div class="col-sm-6">
+            <img src="{{p.img}}" alt="{{p.title}}">
+        </div>
+        <div class="col-sm-6">
+            <h3><a>{{p.title}}</a></h3><br>
+            <span *ngFor="let pa of p.phases">De: {{pa.du}} Au: {{pa.au}} <br>
+            {{pa.libelle}}
+            </span><br>
+            <p>Filiale: {{p.filliale}}</p><br>
+            <p>Responsable: {{p.responsable}}</p>
+        </div>
+    </div>
+  </div-->
+
+
+  <br><br><br><br><div class="container">
+        <div class="row">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12" style="margin-left: 19%;width:949px">
+                    <input type="text" [(ngModel)]="titleSearch" class="search-query form-control" placeholder="Rechercher..." />
+                   
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" (click)="show=!show" type="button">
+                                <span><img src="./assets/img/filtre_icon.png"/></span>
+                            </button>
+                        </span>
+
+                </div><br>
+
+                <div *ngIf="show" style="margin-left: 19%;">
+                    <p>
+                        <span style="background-image:url('./assets/img/white.jpg');padding-top:12px;padding-bottom:12px;padding-left:20px;padding-right:20px;"><label> INTITULE DE PROJET &nbsp;&nbsp;<input #title type="radio" name="size" (change)="0" checked></label></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style="background-image:url('./assets/img/white.jpg');padding-top:12px;padding-bottom:12px;padding-left:20px;padding-right:20px;"><label> DATE DEBUT &nbsp;&nbsp; / DATE FIN &nbsp;&nbsp;<input #date type="radio" name="size" (change)="1" ></label></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style="background-image:url('./assets/img/white.jpg');padding-top:12px;padding-bottom:12px;padding-left:20px;padding-right:20px;"><label> PHASE &nbsp;&nbsp;<input #phase type="radio" name="size" (change)="3" ></label></span>
+                    </p>
+                    <br>
+
+                    <div *ngIf="title.checked">
+                        NOM DU PROJET &nbsp;&nbsp;
+                            <select class="form-control" style="width:208px;display:inline;" [(ngModel)]="sel">
+                                <option [ngValue]="null" selected> Choisissez le nom du projet</option>
+                                <option  *ngFor="let p of projetList">{{p.title}}</option>
+                            </select>  
+                            
+                    </div>
+
+                    <div *ngIf="phase.checked" >
+                            INTITULE PHASE PROJET &nbsp;&nbsp;
+                                <select class="form-control" style="width:208px;display:inline;" [(ngModel)]="selc">
+                                    <option [ngValue]="null" selected> Choisissez l'intitulé phase projet</option>
+                                    <option *ngFor="let ph of projetList[0].phases" [value]="ph.libelle">{{ ph.libelle}}</option>
+                                </select>    
+                    </div>
+
+
+                    <div *ngIf="date.checked">       
+                        Date Début 
+                        <input type="date" name="fDate" style="width:208px;display:inline;" class="form-control"  #firstdate />&nbsp;&nbsp;
+                        Date Fin
+                        <input type="date" name="lDate" style="width:208px;display:inline;" class="form-control" #lastdate />&nbsp;&nbsp;
+                        <input type="submit" value="Check" class="btn btn-default" (click)="dateCheck(firstdate.value,lastdate.value);" />
+                        <br><br>
+                        <div class="row" *ngFor="let p of filterdata" >
+                                <div class="span12">
+                                    Résultats de recherche : <br><br>
+                                    <ul class="thumbnails">
+                                        <li class="span5 clearfix" style="list-style-type: none; ">
+                                          <div class="thumbnail clearfix" style="margin-left: -3%;width: 104%;">
+                                            <img src="{{p.img}}" alt="{{p.title}}" class="pull-left span2 clearfix" style='margin-right:13px'>
+                                            <div>
+                                              <h4>      
+                                              <a>{{p.title}}</a>
+                                              </h4>
+                                              <small *ngFor="let pa of p.phases"> 
+                                                  <p *ngIf='pa.libelle == "exécution"'>Du: {{pa.du}} Au: {{pa.au}}</p>
+                                              </small>
+                                              <span *ngIf='p.phase_cours == "demarrage"'>
+                                                <img  src="./assets/img/icons/icon_demarrage.png"/>
+                                                {{p.phase_cours}}
+                                              </span>
+                                              <span *ngIf='p.phase_cours == "exécution"'>
+                                                    <img src="./assets/img/icons/icon_execution.png"/>
+                                                    {{p.phase_cours}}
+                                              </span>
+                                              <span *ngIf='p.phase_cours == "planification"'>
+                                                    <img src="./assets/img/icons/icon_planif.png"/>
+                                                    {{p.phase_cours}}
+                                              </span>
+                                              <span *ngIf='p.phase_cours == "Suivi"'>
+                                                    <img src="./assets/img/icons/icon_suivi.png"/>
+                                                    {{p.phase_cours}}
+                                              </span>
+                                              <span *ngIf='p.phase_cours == "Clôture"'>
+                                                    <img src="./assets/img/icons/icon_cloture.png"/>
+                                                    {{p.phase_cours}}
+                                              </span>
+                                              <span *ngIf='p.phase_cours == "Bilan d’efficacité"'>
+                                                    <img src="./assets/img/icons/icon_bilan.png"/>
+                                                    {{p.phase_cours}}
+                                              </span><br><br>
+                                              
+                                              <span style="margin-left: 22.5%;">Filiale : <b>{{p.filliale}}</b></span><br>
+                                              <span style="margin-left: 22.5%;">Responsable projet : <b>{{p.responsable}}</b></span>
+                                               
+                                              <div *ngIf="showlist[i]">
+                                                  <p class="pull-right" style="margin-right:30px;">Fiche Projet: <img src="./assets/img/icons/icon_pdf.png"/>
+                                                    <a href="{{p.doc_fiche_projet}}">Télécharger</a>
+                                                  </p>
+                                                  
+                                                  <br><hr style="width: 100%;">
+                                                  <span class="caption">
+                                                        <p>Objectif: {{p.objectif}}</p>
+                                                        <p>Type de projet: {{p.type_projet}}</p>
+                                                        <p>Domaine fonctionnel: {{p.domaine}}</p><br>
+                                                        <p>{{p.description}}</p>
+                                                  </span><br><br><br><br><br><br><br>
+                                                  <span  *ngFor="let pa of p.phases; let i = index">
+                                                        <div class="col-md-2" >
+                                                            <button class="btn btn-default" (click)="showlivrable1[i]=!showlivrable1[i]" style="width: 133px;height:133px;" >
+                                                            <img *ngIf='pa.libelle == "demarrage"' src="./assets/img/icons/icon_demarrage.png"/>
+                                                            <img *ngIf='pa.libelle == "planification"' src="./assets/img/icons/icon_planif.png"/>
+                                                            <img *ngIf='pa.libelle == "exécution"' src="./assets/img/icons/icon_execution.png"/>
+                                                            <img *ngIf='pa.libelle == "Suivi"' src="./assets/img/icons/icon_suivi.png"/>
+                                                            <img *ngIf='pa.libelle == "Clôture"' src="./assets/img/icons/icon_cloture.png"/>
+                                                            <img *ngIf='pa.libelle == "Bilan d’efficacité"' src="./assets/img/icons/icon_bilan.png"/>
+                                                            <br>
+                                                                    {{pa.libelle}}<br><br>
+                                                                <span  *ngIf='pa.libelle == "demarrage"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                                                <span  *ngIf='pa.libelle == "planification"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                                                <span *ngIf='pa.libelle == "exécution"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                                                <span  *ngIf='pa.libelle == "Suivi"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                                                <span  *ngIf='pa.libelle == "Clôture"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                                                <span  *ngIf='pa.libelle == "Bilan d’efficacité"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                                            </button>
+                                                        </div>
+                                                        
+                                                  </span>
+                                                  <span *ngFor="let pa of p.phases; let i = index" >
+                                                        <span *ngIf="showlivrable1[0]">
+                                                            <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                                                <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                                {{ld.title}}<br>{{ld.description}}<br><br>
+                                                                </span>
+                                                                </p>
+                                                        </span>
+                                                    </span>
+                                                    <span *ngFor="let pa of p.phases; let i = index">
+                                                            <span *ngIf="showlivrable1[1]">
+                                                                <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                                                    <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                                    {{ld.title}}<br>{{ld.description}}<br><br>
+                                                                    </span>
+                                                                    </p>
+                                                            </span>
+                                                    </span>
+                                                    <span *ngFor="let pa of p.phases; let i = index">
+                                                        <span *ngIf="showlivrable1[2]">
+                                                            <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                                                <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                                    {{ld.title}}<br>{{ld.description}}<br><br>
+                                                                </span>
+                                                            </p>
+                                                        </span>
+                                                    </span>
+                                                    <span  *ngFor="let pa of p.phases; let i = index">
+                                                        <span  *ngIf="showlivrable1[3]">
+                                                            <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                                                <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                                        {{ld.title}}<br>{{ld.description}}<br><br>
+                                                                </span>
+                                                            </p>
+                                                        </span>
+                                                    </span>
+                                                    <span  *ngFor="let pa of p.phases; let i = index">
+                                                        <span *ngIf="showlivrable1[4]">
+                                                            <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                                                <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                                            {{ld.title}}<br>{{ld.description}}<br><br>
+                                                                </span>
+                                                            </p>
+                                                        </span>
+                                                    </span>
+                                                    <span *ngFor="let pa of p.phases; let i = index">
+                                                        <span *ngIf="showlivrable1[5]">
+                                                            <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                                                <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                                                {{ld.title}}<br>{{ld.description}}<br><br>
+                                                                </span>
+                                                            </p>
+                                                        </span>
+                                                    </span>
+                                                
+                                              </div>
+                                            </div>
+                    
+                                            <div class="pull-right" style="float:right">
+                                                    <a (click)="showlist[i]=!showlist[i]"><span class="lnr lnr-arrow-up-circle"></span></a>
+                                            </div>
+                    
+                                          </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                    </div> 
+
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row" *ngFor="let p of (projetList | FilterPipe: titleSearch | selectfilter: sel | PhasesPipe: selc );let i = index">
+            <div class="span12">
+                <ul class="thumbnails">
+                    <li class="span5 clearfix" style="list-style-type: none; ">
+                      <div class="thumbnail clearfix" style="margin-left: 16%;width: 86%;">
+                        <img src="{{p.img}}" alt="{{p.title}}" class="pull-left span2 clearfix" style='margin-right:13px'>
+                        <div>
+                          <h4>      
+                          <a>{{p.title}}</a>
+                          </h4>
+                          <small *ngFor="let pa of p.phases"> 
+                              <p *ngIf='pa.libelle == "exécution"'>Du: {{pa.du}} Au: {{pa.au}}</p>
+                          </small>
+                          <span *ngIf='p.phase_cours == "demarrage"'>
+                            <img  src="./assets/img/icons/icon_demarrage.png"/>
+                            {{p.phase_cours}}
+                          </span>
+                          <span *ngIf='p.phase_cours == "exécution"'>
+                                <img src="./assets/img/icons/icon_execution.png"/>
+                                {{p.phase_cours}}
+                          </span>
+                          <span *ngIf='p.phase_cours == "planification"'>
+                                <img src="./assets/img/icons/icon_planif.png"/>
+                                {{p.phase_cours}}
+                          </span>
+                          <span *ngIf='p.phase_cours == "Suivi"'>
+                                <img src="./assets/img/icons/icon_suivi.png"/>
+                                {{p.phase_cours}}
+                          </span>
+                          <span *ngIf='p.phase_cours == "Clôture"'>
+                                <img src="./assets/img/icons/icon_cloture.png"/>
+                                {{p.phase_cours}}
+                          </span>
+                          <span *ngIf='p.phase_cours == "Bilan d’efficacité"'>
+                                <img src="./assets/img/icons/icon_bilan.png"/>
+                                {{p.phase_cours}}
+                          </span><br><br>
+                          
+                          <span style="margin-left: 22.5%;">Filiale : <b>{{p.filliale}}</b></span><br>
+                          <span style="margin-left: 22.5%;">Responsable projet : <b>{{p.responsable}}</b></span>
+                           
+                          <div *ngIf="showlist[i]">
+                              <p class="pull-right" style="margin-right:30px;">Fiche Projet: <img src="./assets/img/icons/icon_pdf.png"/>
+                                <a href="{{p.doc_fiche_projet}}">Télécharger</a>
+                              </p>
+                              
+                              <br><hr style="width: 100%;">
+                              <span class="caption">
+                                    <p>Objectif: {{p.objectif}}</p>
+                                    <p>Type de projet: {{p.type_projet}}</p>
+                                    <p>Domaine fonctionnel: {{p.domaine}}</p><br>
+                                    <p>{{p.description}}</p>
+                              </span><br><br><br><br><br><br><br>
+                              <span  *ngFor="let pa of p.phases; let i = index">
+                                    <div class="col-md-2" >
+                                        <button class="btn btn-default" (click)="showlivrable1[i]=!showlivrable1[i]" style="width: 133px;height:133px;" >
+                                        <img *ngIf='pa.libelle == "demarrage"' src="./assets/img/icons/icon_demarrage.png"/>
+                                        <img *ngIf='pa.libelle == "planification"' src="./assets/img/icons/icon_planif.png"/>
+                                        <img *ngIf='pa.libelle == "exécution"' src="./assets/img/icons/icon_execution.png"/>
+                                        <img *ngIf='pa.libelle == "Suivi"' src="./assets/img/icons/icon_suivi.png"/>
+                                        <img *ngIf='pa.libelle == "Clôture"' src="./assets/img/icons/icon_cloture.png"/>
+                                        <img *ngIf='pa.libelle == "Bilan d’efficacité"' src="./assets/img/icons/icon_bilan.png"/>
+                                        <br>
+                                                {{pa.libelle}}<br><br>
+                                            <span  *ngIf='pa.libelle == "demarrage"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                            <span  *ngIf='pa.libelle == "planification"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                            <span *ngIf='pa.libelle == "exécution"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                            <span  *ngIf='pa.libelle == "Suivi"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                            <span  *ngIf='pa.libelle == "Clôture"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                            <span  *ngIf='pa.libelle == "Bilan d’efficacité"'>Du: {{pa.du}} <br> Au: {{pa.au}}</span>
+                                        </button>
+                                    </div>
+                                    
+                              </span>
+                              <span *ngFor="let pa of p.phases; let i = index" >
+                                    <span *ngIf="showlivrable1[0]">
+                                        <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                            <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                            {{ld.title}}<br>{{ld.description}}<br><br>
+                                            </span>
+                                            </p>
+                                    </span>
+                                </span>
+                                <span *ngFor="let pa of p.phases; let i = index">
+                                        <span *ngIf="showlivrable1[1]">
+                                            <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                                <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                {{ld.title}}<br>{{ld.description}}<br><br>
+                                                </span>
+                                                </p>
+                                        </span>
+                                </span>
+                                <span *ngFor="let pa of p.phases; let i = index">
+                                    <span *ngIf="showlivrable1[2]">
+                                        <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                            <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                {{ld.title}}<br>{{ld.description}}<br><br>
+                                            </span>
+                                        </p>
+                                    </span>
+                                </span>
+                                <span  *ngFor="let pa of p.phases; let i = index">
+                                    <span  *ngIf="showlivrable1[3]">
+                                        <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                            <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                    {{ld.title}}<br>{{ld.description}}<br><br>
+                                            </span>
+                                        </p>
+                                    </span>
+                                </span>
+                                <span  *ngFor="let pa of p.phases; let i = index">
+                                    <span *ngIf="showlivrable1[4]">
+                                        <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                            <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                        {{ld.title}}<br>{{ld.description}}<br><br>
+                                            </span>
+                                        </p>
+                                    </span>
+                                </span>
+                                <span *ngFor="let pa of p.phases; let i = index">
+                                    <span *ngIf="showlivrable1[5]">
+                                        <p class="par" *ngIf='pa.libelle == "demarrage"'>
+                                            <span *ngFor="let ld of p.livrablesDemmarage" style="float:left;">
+                                                            {{ld.title}}<br>{{ld.description}}<br><br>
+                                            </span>
+                                        </p>
+                                    </span>
+                                </span>
+                            
+                          </div>
+                        </div>
+
+                        <div class="pull-right" style="float:right">
+                                <a (click)="showlist[i]=!showlist[i]"><span class="lnr lnr-arrow-up-circle"></span></a>
+                        </div>
+
+                      </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>

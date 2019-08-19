@@ -1,0 +1,26 @@
+<!-- LEFT SIDEBAR -->
+<div id="left-sidebar" class="sidebar" style="height: 100%;">
+  <button type="button" class="btn btn-xs btn-link btn-toggle-fullwidth">
+    <span class="sr-only">Toggle Fullwidth</span>
+    <i class="fa fa-angle-left"></i>
+  </button>
+  <div class="sidebar-scroll">
+  
+    <nav id="left-sidebar-nav" class="sidebar-nav">
+      <ul id="main-menu" class="metismenu">
+        <li routerLinkActive="active"><a [routerLink]='["/home"]'><i class="lnr lnr-home"></i>&nbsp;<span>{{ 'header.sidebarHome' | translate }}</span></a></li>
+        <li routerLinkActive="active"><a [routerLink]='["/pilotage"]'><i class="lnr lnr-home"></i>&nbsp;<span>Pilotage Projet</span></a></li>
+        <li class="">
+          <a [routerLink]='["/aboutus"]' routerLinkActive="active" class="has-arrow" aria-expanded="false"><i class="lnr lnr-bookmark"></i>&nbsp;<span>{{ 'header.sidebarAbout' | translate }}</span></a>
+        </li>
+        <li class="">
+          <a [routerLink]='["/contactus"]' routerLinkActive="active" class="has-arrow" aria-expanded="false"><i class="lnr lnr-inbox"></i>&nbsp;<span>{{ 'header.sidebarContact' | translate }}</span></a>
+          
+        </li>
+
+      </ul>
+    </nav>
+   
+  </div>
+</div>
+<!-- END LEFT SIDEBAR -->
